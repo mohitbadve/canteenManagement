@@ -74,7 +74,6 @@ def addProducts():
     con.close()
     return render_template('successful.html')
 
-
 @app.route('/form-add-combos')
 def formAddCombos():
     return render_template('add_combos.html')
@@ -92,6 +91,22 @@ def formAddProducts():
     data = cur.fetchone()
     productId = data[0]+1
     return render_template('add_products.html',productId = productId)
+
+@app.route('/menu')
+def menu():
+    con = pymysql.connect(
+        host="localhost",
+        user="mohit",
+        passwd="Mohit@2K",
+        database="canteen"
+    )
+    cur = con.cursor()
+    sql = "select name,price,time_required from products inner join price on products.idproducts = price.product_id inner join time_required on products.idproducts = time_required.product_id where status = 'available'"
+    cur.execute(sql)
+    data = cur.fetchall()
+    cur.close()
+    con.close()
+    return render_template('menu.html',data = data)
 
 if __name__ == '__main__':
     app.run(debug=True)
