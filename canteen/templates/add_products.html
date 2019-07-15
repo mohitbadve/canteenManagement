@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Products</title>
+</head>
+<body>
+    <h1>Add Products</h1>
+    <form action = '/add-products' method = 'post'>
+        <input name = 'productIdActual' style="visibility: hidden" value = {{ productId }} ><br>
+        ProductId &nbsp;<input type ='number' name = 'productId' disabled id = 'productId' value = {{ productId }}  ><br>
+        ProductName &nbsp;<input type = 'text' placeholder="enter name" name = 'productName'><br>
+        Category &nbsp;<select name="category"><br>
+          <option value="Breakfast">Breakfast</option>
+          <option value="Main Course">Main Course</option>
+          <option value="Desert">Desert</option>
+        </select><br>
+        Price &nbsp;<input type="text" name = 'price'><br>
+        Time required(in min) &nbsp;<input type="text" name = 'timeReq'><br>
+        <input type = 'submit' name = 'submit-add_products' value = 'Submit'>
+    </form>
+</body>
+</html>

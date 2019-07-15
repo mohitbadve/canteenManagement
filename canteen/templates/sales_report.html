@@ -6,11 +6,13 @@
 </head>
 <body>
     <h1>Sales Report</h1>
+
     <form action = '/report' method = 'post'>
-        <input type = 'date' name = 'from'>
-        <input type = 'date' name = 'to'>
+        <input type = 'date' name = 'from' value = {{searchedDates[0] }}>
+        <input type = 'date' name = 'to' value = {{ searchedDates[1] }}>
         <input type = 'submit' name = 'submit-report'>
     </form>
+
     {% for item in data %}
         <tr>
             <td>{{item[0]}}</td>
