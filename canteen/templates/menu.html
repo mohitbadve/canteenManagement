@@ -6,14 +6,19 @@
 </head>
 <body>
     <h1>Menu</h1><br><br><br>
-    <table>
-    {% for item in data %}
+    <table cellpadding="10px" cellspacing="10px" border="4px">
         <tr>
-            <td>{{item[0]}}</td>
-            <td>{{item[1]}}</td>
-            <td>{{item[2]}}</td>
+            <th>Name
+            <th>Price
+            <th>Time Required
         </tr>
-    {% endfor %}
+        {% for item in data %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+            </tr>
+        {% endfor %}
      </table>
 </body>
 </html>

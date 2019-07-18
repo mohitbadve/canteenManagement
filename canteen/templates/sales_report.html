@@ -12,17 +12,21 @@
         <input type = 'date' name = 'to' value = {{ searchedDates[1] }}>
         <input type = 'submit' name = 'submit-report'>
     </form>
-
-    {% for item in data %}
+    <table cellpadding="10px" cellspacing="10px" border="4px">
         <tr>
-            <td>{{item[0]}}</td>
-            <td>{{item[1]}}</td>
-            <td>{{item[2]}}</td>
-            <td>{{item[3]}}</td>
-            <td>{{item[4]}}</td>
-            <td>{{item[5]}}</td>
-            <td>{{item[6]}}</td>
+            <th>Order Id
+            <th>Order Date
+            <th>Completion Date
+            <th>Status
         </tr>
-    {% endfor %}
+        {% for item in data %}
+            <tr>
+                <td>{{item[0]}}</td>
+                <td>{{item[1]}}</td>
+                <td>{{item[2]}}</td>
+                <td>{{item[3]}}</td>
+            </tr>
+        {% endfor %}
+    </table>
 </body>
 </html>

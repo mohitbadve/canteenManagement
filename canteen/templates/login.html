@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form method="post" action="/login">
+        Login ID<input type="text" name = 'login_id' placeholder="Enter Your Login ID"><br>
+        Password<input type="password" name = 'password'><br>
+        <input type="submit" value="Login"><br>
+        <input style="visibility: hidden" name="type" value={{ type }}>
+    </form>
+</body>
+</html>

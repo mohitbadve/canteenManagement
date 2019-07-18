@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Place Order</title>
+    <script>
+        var count = 0
+        var arrayOfProducts = []
+        function getRowId(i) {
+            return 'row'.concat(i)
+        }
+        function getRowQty(i) {
+            return 'qty'.concat(i)
+        }
+        function getRowSelect(i) {
+            return 'select'.concat(i)
+        }
+        function getCount(){
+            count = count + 1
+            return count
+        }
+        function addInUI(){
+            var t = document.getElementById('table')
+            var tr = t.insertRow(-1);
+            var ct = getCount()
+            tr.setAttribute('id',getRowId(ct))
+            var td1 = tr.insertCell(-1)
+            var td2 = tr.insertCell(-1)
+            var td3 = tr.insertCell(-1)
+            var select = document.createElement('select')
+            select.setAttribute('id',getRowSelect(ct))
+            {#var option = document.createElement("option");
+            option.text = {{ countNames[0]|safe }}
+            select.add(option)#}
+            {#/*for (var i=0;i<{{ countNames[0] }}|safe;i++) {
+                var option = document.createElement("option");
+                option.text = {{ productNames.__getitem__[0]||safe }};
+                select.add(option)
+            }*/#}
+            td1.appendChild(select)
+        }
+        function addToArray(p) {
+            arrayOfProducts.push(p);
+            console.log(arrayOfProducts);
+        }
+    </script>
+</head>
+<body>
+    <h1>Place Order</h1>
+    <table id = 'table'>
+        <tr id = 'getRowId(0)'>
+            <td>
+                <select id = getRowSelect(0)>
+                    {% for item in productNames %}
+                        <option>{{ item[0] }}</option>
+                        <button style="visibility: hidden" onload="addToArray({{ item[0] }})"></button>
+                    {% endfor %}
+                </select>
+            </td>
+            <td><input type = 'number' name = getRowQty(0)></td>
+            <td><input type="submit" value="Submit" name="submit-place_order"></td>
+        </tr>
+    </table>
+    <button onclick="return addInUI()" id = 'addButton'>Add</button>
+</body>
+</html>
