@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Order Status</title>
+    <script>
+        var count = -1;
+        function getID(){
+            count = count + 1;
+            return String.valueOf(count);
+        }
+    </script>
+</head>
+<body>
+    <h1>Update Order Status</h1>
+    {% if table_id != '' %}
+        <form action="/get-orders" method="post">
+            Table-ID<input type="number" name = 'table_id' value = {{ table_id }}><br>
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+    {% if idorders == -1 %}
+        {% if orders != '' %}
+            {% for item in orders %}
+                <form action="/update-order-status/{{ item[0] }}" method="post">
+                    <input  value = {{ item[0] }} disabled>&nbsp;
+                    {{ item[1] }}&nbsp;
+                    {{ item[2] }}&nbsp;
+                    <input type="submit" value="Update">
+                    <br>
+                </form>
+            {% endfor %}
+        {% endif %}
+    {% else %}
+        <form action="/order-status-final" method="post">
+            <input name = 'idorders' readonly value = {{ idorders }} ><br>
+            <select name = 'status'>
+                <option value ="Received" >Received</option>
+                <option value ="Processing">Processing</option>
+                <option value ="Completed">Completed</option>
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    {% endif %}
+</body>
+</html>

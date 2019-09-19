@@ -239,5 +239,81 @@ def formPlaceOrder():
     countNames = cur.fetchall()
     return render_template('place_order.html',productNames = productNames,countNames = countNames)
 
+@app.route('/form-update-order-status')
+def formUpdateOrder():
+    return render_template('update_order_status.html',orders = '',table_id = -1,idorders = -1)
+
+@app.route('/get-orders',methods=['POST'])
+def getOrders():
+    table_id = request.form['table_id']
+    con = pymysql.connect(
+        host='localhost',
+        user='mohit',
+        passwd='Mohit@2K',
+        database='canteen'
+    )
+    cur = con.cursor()
+    sql = "SELECT idorders,order_date,status FROM orders WHERE table_id = %s"
+    val = (table_id)
+    cur.execute(sql,val)
+    orders = cur.fetchall()
+    cur.close()
+    con.close()
+    return render_template('update_order_status.html',orders = orders,table_id = table_id,idorders = -1)
+
+@app.route('/update-order-status/<idorders>',methods=['POST'])
+def updateOrder(idorders):
+    print(idorders)
+    return render_template('update_order_status.html',orders = '',idorders = idorders,table_id = '')
+
+@app.route('/order-status-final',methods=['POST'])
+def orderStatus():
+    idorders = int(request.form['idorders'])
+    status = request.form['status']
+    print(idorders)
+    print(status)
+    con = pymysql.connect(
+        host='localhost',
+        user='mohit',
+        passwd='Mohit@2K',
+        database='canteen'
+    )
+    cur = con.cursor()
+    if(status == 'Completed'):
+        completion_date = datetime.datetime.now()
+        sql = "UPDATE orders SET status = %s,completion_date = %s WHERE idorders = %s"
+        val = (status,completion_date,idorders)
+    else:
+        sql = "UPDATE orders SET status = %s,completion_date = NULL WHERE idorders = %s"
+        val = (status,idorders)
+    cur.execute(sql,val)
+    con.commit()
+    cur.close()
+    con.close()
+    return render_template('successful.html')
+
+@app.route('/form-add-combos')
+def formAddCombos():
+    con = pymysql.connect(
+        host='localhost',
+        user='mohit',
+        passwd='Mohit@2K',
+        database='canteen'
+    )
+    cur = con.cursor()
+    sql = "SELECT name FROM products WHERE status = 'available'"
+    cur.execute(sql)
+    data = cur.fetchall()
+    cur.close()
+    con.close()
+    return render_template('add_combos.html',data = data)
+
+@app.route('/add-combos',methods = ['POST'])
+def addCombos():
+    productNames = request.form['dropdown']
+    print(productNames)
+    return render_template('successful.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)

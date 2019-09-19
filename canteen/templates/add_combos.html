@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
     <meta charset="UTF-8">
     <title>Add Combos</title>
+
 </head>
 <body>
     <h1>Add Combos</h1>
-    <form action = '/add-combos' method = 'post'>
-        <input type =>
-        <input type = 'submit' name = 'submit-add-combos'>
+    <form action="/add-combos" method="post">
+        <select name = 'dropdown'>
+            {% for item in data %}
+                <option value={{ item[0]}}>{{ item[0] }}</option>
+            {% endfor %}
+        </select>
     </form>
 </body>
 </html>
