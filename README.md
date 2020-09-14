@@ -1,5 +1,5 @@
 # Canteen Automation
-To run the project, make sure you have flask installed otherwise execute 
+To run the project, clone the repository or download and extract the zip file, make sure you have flask installed otherwise execute 
 > pip install flask 
 
 Go to the directory `canteen` and execute the following command
