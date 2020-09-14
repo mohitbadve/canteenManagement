@@ -1,4 +1,10 @@
 # Canteen Automation
+To run the project, make sure you have flask installed otherwise execute 
+> pip install flask 
+
+Go to the directory `canteen` and execute the following command
+> python app.py
+
 Canteen Management System developed as a Web application using Flask framework with MySQL as a RDBMS. Automation of day-to-day canteen operations like viewing today's menu, placing an order, receiving an order, updating status of order, billing, offering discounts.   
 
 Menu will be shown to the customer and can place the order accordingly.
